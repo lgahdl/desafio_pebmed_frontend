@@ -1,24 +1,16 @@
-# desafio_pebmed_frontend
+# CRMedic - Gerenciamento de Pacientes e Consultas
 
-## Project setup
-```
-yarn install
-```
+Este é um site para cadastro, edição e remoção de pacientes e consultas de uma base de dados.
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## Dev
 
-### Compiles and minifies for production
-```
-yarn build
-```
+Para inicializar o projeto, os comandos utilizados são:<br/>
+... yarn install<br/>
+e em seguida: <br/>
+... yarn serve <br/>
 
-### Lints and fixes files
-```
-yarn lint
-```
+Obs.: É necessário um arquivo nomeado ".env" com uma variável chamada "VUE_APP_ROOT_API" apontando para o servidor da
+aplicação, siga o .env.example contido nesse arquivo. <br/>
+O projeto rodará na porta 8080.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
