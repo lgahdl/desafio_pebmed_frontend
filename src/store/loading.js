@@ -14,11 +14,12 @@ export default {
     mutations: {
         PUSH_TASK(state) {
             state.tasksList.push(1);
+            console.log(state.tasksList);
             state.loading = true;
         },
         REMOVE_TASK(state) {
             state.tasksList.pop();
-            state.loading == state.tasksList.length == 0 ? false : true;
+            state.loading = state.tasksList.length === 0 ? false : true;
         },
         CLEAR_LOADING_STATE(state) {
             state.tasksList = [];

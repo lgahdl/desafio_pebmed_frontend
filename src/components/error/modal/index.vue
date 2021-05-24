@@ -20,6 +20,8 @@ export default {
         closeButtonHtml: '<span style="color:#F6F6F6; cursor: default; width:100%;">?</span>',
         confirmButtonColor: "#FC696C",
         confirmButtonText: "Ok",
+      }).then(() => {
+        this.$store.dispatch("setErrorModal", false);
       })
     }
   },

@@ -34,25 +34,60 @@ const store = {
         }
     },
     actions: {
-        async findAllAppointments({commit}) {
-            const appointments = await AppointmentService.findAll();
-            commit("SET_APPOINTMENTS", appointments.map((appointment) => adapter.toDisplay(appointment)));
+        async findAllAppointments({commit, dispatch}) {
+            try {
+                const appointments = await AppointmentService.findAll();
+                commit("SET_APPOINTMENTS", appointments.map((appointment) => adapter.toDisplay(appointment)));
+            } catch (error) {
+                dispatch("clearLoadingState");
+                dispatch("setError", error);
+                dispatch("setErrorMessage", "As consultas não puderam ser encontradas");
+                dispatch("setErrorModal", true);
+            }
         },
-        async findAppointmentById({commit}, id) {
-            const appointment = await AppointmentService.findById(id);
-            commit("SET_SELECTED_APPOINTMENT", adapter.toDisplay(appointment));
+        async findAppointmentById({commit, dispatch}, id) {
+            try {
+                const appointment = await AppointmentService.findById(id);
+                commit("SET_SELECTED_APPOINTMENT", adapter.toDisplay(appointment));
+            } catch (error) {
+                dispatch("clearLoadingState");
+                dispatch("setError", error);
+                dispatch("setErrorMessage", "A consulta não pôde ser encontrada!");
+                dispatch("setErrorModal", true);
+            }
         },
-        async saveAppointment({commit}, appointment) {
-            const saved = await AppointmentService.post(adapter.toApi(appointment));
-            commit("PUSH_APPOINTMENT", adapter.toDisplay(saved));
+        async saveAppointment({commit, dispatch}, appointment) {
+            try {
+                const saved = await AppointmentService.post(adapter.toApi(appointment));
+                commit("PUSH_APPOINTMENT", adapter.toDisplay(saved));
+            } catch (error) {
+                dispatch("clearLoadingState");
+                dispatch("setError", error);
+                dispatch("setErrorMessage", "A consulta não pôde ser registrada");
+                dispatch("setErrorModal", true);
+            }
         },
-        async editAppointment({commit}, {id, appointment}) {
-            const edited = await AppointmentService.patch(id, adapter.toApi(appointment));
-            commit("EDIT_APPOINTMENT", adapter.toDisplay(edited));
+        async editAppointment({commit, dispatch}, {id, appointment}) {
+            try {
+                const edited = await AppointmentService.patch(id, adapter.toApi(appointment));
+                commit("EDIT_APPOINTMENT", adapter.toDisplay(edited));
+            } catch (error) {
+                dispatch("clearLoadingState");
+                dispatch("setError", error);
+                dispatch("setErrorMessage", "A consulta não pôde ser editada");
+                dispatch("setErrorModal", true);
+            }
         },
-        async deleteAppointmentById({commit}, id) {
-            await AppointmentService.deleteById(id);
-            commit("DELETE_APPOINTMENT", id);
+        async deleteAppointmentById({commit, dispatch}, id) {
+            try {
+                await AppointmentService.deleteById(id);
+                commit("DELETE_APPOINTMENT", id);
+            } catch (error) {
+                dispatch("clearLoadingState");
+                dispatch("setError", error);
+                dispatch("setErrorMessage", "A consulta não pôde ser deletada.");
+                dispatch("setErrorModal", true);
+            }
         },
         setSelectedAppointment({commit}, appointment) {
             commit("SET_SELECTED_APPOINTMENT", appointment);
