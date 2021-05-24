@@ -1,9 +1,7 @@
 <template>
   <v-app id="inspire">
-    <v-app id="inspire">
-      <nav-drawer></nav-drawer>
-      <content></content>
-    </v-app>
+    <nav-drawer/>
+    <Content></Content>
   </v-app>
 </template>
 

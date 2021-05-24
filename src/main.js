@@ -1,26 +1,30 @@
 import Vue from 'vue'
-import App from './App.vue';
-import vuetify from './plugins/vuetifiy' // path to vuetify export
+import axios from 'axios'
+import VMask from 'v-mask'
+import store from './store'
 import {ValidationObserver} from "vee-validate";
 import {ValidationProvider, extend} from 'vee-validate/dist/vee-validate.full.esm';
-import 'sweetalert2/dist/sweetalert2.min.css';
-import FormInputs from '@/components/general/formInputs';
+import {FormText, FormTextArea, FormDatePicker, FormTimePicker, FormSelect} from './components/general/formInputs';
 import VueAxios from 'vue-axios'
 import VueRouter from 'vue-router';
 import routes from './routes';
 import Vuetify from "vuetify";
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import '@mdi/font/css/materialdesignicons.css'
+import 'sweetalert2/dist/sweetalert2.min.css';
 import 'vuetify/dist/vuetify.min.css'
+import App from "./App";
 
 Vue.use(VueRouter, VueAxios);
 Vue.use(VMask);
 Vue.use(Vuetify)
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.component('ValidationObserver', ValidationObserver);
-Vue.component('FormText', FormInputs.FormText);
-Vue.component('FormTextArea', FormInputs.FormTextArea);
-Vue.component('FormDatePicker', FormInputs.FormDatePicker);
-Vue.component('FormTimePicker', FormInputs.FormTimePicker);
-Vue.component('FormSelect', FormInputs.FormSelect);
+Vue.component('FormText', FormText);
+Vue.component('FormTextArea', FormTextArea);
+Vue.component('FormDatePicker', FormDatePicker);
+Vue.component('FormTimePicker', FormTimePicker);
+Vue.component('FormSelect', FormSelect);
 
 extend("required", {
     message: (field) => `O campo ${field} é obrigatório`,
@@ -31,14 +35,6 @@ extend("required", {
         };
     },
     computesRequired: true
-})
-
-extend("confirmValue", {
-    message: () => "Os campos não estão iguais",
-    validate(value, [confirmedValue]) {
-        return value === confirmedValue;
-    },
-    hasTarget: true,
 })
 
 const router = new VueRouter({

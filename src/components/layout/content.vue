@@ -1,19 +1,18 @@
 <template>
   <v-main>
-    <router-view />
+    <router-view/>
     <v-container v-show="false" v-if="errorModal">
-      <ErrorModal />
+      <ErrorModal/>
     </v-container>
-    <LoadingOverlay/>
   </v-main>
 </template>
 <script>
-import { mapGetters } from "vuex";
-import ErrorModal from "./error/modal/geral";
-import LoadingOverlay from './loading';
+import {mapGetters} from "vuex";
+import ErrorModal from "../error/modal";
+
 export default {
   name: "MainContent",
-  components: { ErrorModal, LoadingOverlay },
+  components: {ErrorModal},
   computed: {
     ...mapGetters(["errorModal"]),
   },

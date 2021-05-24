@@ -1,4 +1,4 @@
-template>
+<template>
   <ValidationProvider :name="name" :rules="rules" v-slot="{ errors }" >
     <v-radio-group v-model="inputValue" :row="row" :error-messages="errors">
       <v-radio

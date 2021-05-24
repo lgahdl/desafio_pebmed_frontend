@@ -6,9 +6,9 @@
         :clipped="$vuetify.breakpoint.lgAndUp"
         app
     >
-      <v-list dense>
+      <v-list>
         <template v-for="item in items">
-          <v-list-item v-else v-bind:key="item.description" link :to="item.route">
+          <v-list-item v-bind:key="item.description" link :to="item.route">
             <v-list-item-action
                 style="margin-right: 8px !important"
                 v-if="item.icon"
@@ -32,10 +32,10 @@ export default {
     drawer: false,
     items: [{
       description: "Pacientes",
-      icon: "mdi-user",
+      icon: "mdi-account-multiple",
       route: "/patients",
     }, {
-      description: "Agendamentos de Consulta",
+      description: "Consultas",
       icon: "mdi-calendar",
       route: "/appointments",
     }]

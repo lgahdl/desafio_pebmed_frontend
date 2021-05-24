@@ -15,6 +15,7 @@
         v-mask="mask"
         :error-messages="errors"
         :label="label"
+        :step="step"
         :name="name"
         :hint="hint"
         :disabled="disabled"
@@ -56,6 +57,9 @@ export default {
       default: false,
     },
     name: {
+      type: String,
+    },
+    step:{
       type: String,
     },
     label: {
@@ -120,8 +124,8 @@ export default {
       this.$emit("input", e);
       this.handleChange && this.handleChange(e);
     },
-    onBlur() {
-      this.handleBlur && this.handleBlur();
+    onBlur(e) {
+      this.handleBlur && this.handleBlur(e.target.value);
     },
     onClickAppendIcon() {
       if (this.handleAppendIcon) {

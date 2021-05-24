@@ -1,10 +1,10 @@
 <template>
   <div>
-    <loading
+    <Loading
       :active="loading"
       :can-cancel="false"
       :is-full-page="true"
-    ></loading>
+    ></Loading>
   </div>
 </template>
 
